@@ -1,0 +1,102 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  --color-paper: #f6f1e7;
+  --color-surface: #fffdf8;
+  --color-ink: #172033;
+  --color-harbor: #31506f;
+  --color-gold: #a77523;
+  --color-emerald: #16745f;
+  --color-line: #ddd4c5;
+  --color-muted: #5e6878;
+  --color-danger: #b42318;
+}
+
+.dark {
+  color-scheme: dark;
+  --color-paper: #0c111d;
+  --color-surface: #141c2b;
+  --color-ink: #f3eadb;
+  --color-harbor: #9db5d0;
+  --color-gold: #d7a84d;
+  --color-emerald: #61d0af;
+  --color-line: #2d3a4d;
+  --color-muted: #c3ccda;
+  --color-danger: #ffb4a8;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at 18% 0%, color-mix(in srgb, var(--color-gold) 16%, transparent), transparent 28rem),
+    var(--color-paper);
+  color: var(--color-ink);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+h1,
+h2 {
+  font-family: var(--font-display), serif;
+  letter-spacing: 0;
+}
+
+.focus-ring {
+  @apply focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-harbor;
+}
+
+@layer utilities {
+  .dark .bg-white {
+    background-color: var(--color-surface) !important;
+  }
+
+  .dark .bg-slate-50,
+  .dark .bg-slate-100 {
+    background-color: #1d2738 !important;
+  }
+
+  .dark .border-slate-200,
+  .dark .border-slate-300 {
+    border-color: var(--color-line) !important;
+  }
+
+  .dark .text-slate-200,
+  .dark .text-slate-400,
+  .dark .text-slate-500,
+  .dark .text-slate-600,
+  .dark .text-slate-700,
+  .dark .text-slate-800 {
+    color: var(--color-muted) !important;
+  }
+
+  .dark .bg-ink {
+    background-color: #090d16 !important;
+  }
+
+  .dark .text-white {
+    color: #fff7e8 !important;
+  }
+
+  .dark .hover\:bg-slate-100:hover,
+  .dark .hover\:bg-slate-50:hover {
+    background-color: #223049 !important;
+  }
+
+  .dark input,
+  .dark select,
+  .dark textarea {
+    background-color: var(--color-surface);
+    color: var(--color-ink);
+    border-color: var(--color-line);
+  }
+}
