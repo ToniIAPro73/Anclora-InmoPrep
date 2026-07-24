@@ -26,7 +26,7 @@ export default function StatsPage() {
         <p className="text-sm font-semibold text-gold">Analítica local</p>
         <h1 className="text-3xl font-bold">Estadísticas</h1>
       </div>
-      <section className="rounded-md border border-slate-200 bg-white p-5">
+      <section className="app-card rounded-md p-5">
         <h2 className="mb-4 text-lg font-bold">Dominio por módulo</h2>
         <div className="h-80">
           <ResponsiveContainer width="100%" height="100%">
@@ -40,13 +40,13 @@ export default function StatsPage() {
           </ResponsiveContainer>
         </div>
       </section>
-      <section className="rounded-md border border-red-200 bg-red-50 p-5">
-        <h2 className="text-lg font-bold text-red-900">Reiniciar progreso</h2>
-        <p className="mt-2 text-sm text-red-800">
+      <section className="app-danger rounded-md p-5">
+        <h2 className="text-lg font-bold">Reiniciar progreso</h2>
+        <p className="mt-2 text-sm">
           Borra lecciones, ejercicios, notas, fallos y racha guardados en este navegador.
         </p>
         <button
-          className="focus-ring mt-4 rounded-md bg-red-700 px-3 py-2 text-sm font-medium text-white"
+          className="focus-ring mt-4 rounded-md border border-current px-3 py-2 text-sm font-bold"
           onClick={() => {
             if (window.confirm("¿Reiniciar todo el progreso local?")) resetProgress();
           }}

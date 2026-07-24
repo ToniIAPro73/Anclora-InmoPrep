@@ -24,16 +24,16 @@ export function DashboardPage() {
 
   return (
     <div className="space-y-6">
-      <section className="rounded-md border border-line bg-white p-6 text-ink shadow-sm dark:bg-ink dark:text-white">
+      <section className="app-card rounded-md p-6">
         <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
           <div>
             <p className="text-sm font-semibold text-gold">Dashboard ROAIIB</p>
             <h1 className="mt-2 text-3xl font-bold">Plan de estudio de hoy</h1>
-            <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-600 dark:text-slate-200">
+            <p className="app-muted mt-2 max-w-2xl text-sm leading-6">
               Avanza módulo, practica caso balear y guarda progreso en este dispositivo.
             </p>
           </div>
-          <div className="inline-flex items-center gap-2 rounded-md border border-line bg-paper px-4 py-3 dark:border-white/10 dark:bg-white/10">
+          <div className="app-soft inline-flex items-center gap-2 rounded-md border border-line px-4 py-3">
             <Flame className="h-5 w-5 text-gold" />
             <span className="font-semibold">{streakDays} días de racha</span>
           </div>
@@ -46,25 +46,25 @@ export function DashboardPage() {
         <Kpi icon={Clock} label="Tiempo estudio" value={formatMinutes(totalStudyMinutes)} />
       </section>
       <section className="grid gap-4 xl:grid-cols-[1.4fr_1fr]">
-        <article className="rounded-md border border-slate-200 bg-white p-5 shadow-sm">
+        <article className="app-card rounded-md p-5">
           <p className="text-xs font-semibold uppercase text-gold">Estudiar hoy</p>
           <h2 className="mt-2 text-2xl font-bold">
             <span className="font-sans text-xl font-bold tracking-wide">{nextModule.code}</span>
             <span>: {nextModule.title}</span>
           </h2>
-          <p className="mt-2 text-sm leading-6 text-slate-600">{nextModule.description}</p>
+          <p className="app-muted mt-2 text-sm leading-6">{nextModule.description}</p>
           <div className="mt-5">
             <ProgressBar value={next?.masteryScore ?? 0} />
           </div>
           <Link
             href={`/modulos/${nextModule.id}`}
-            className="focus-ring mt-5 inline-flex items-center gap-2 rounded-md border border-gold/50 bg-gold/10 px-4 py-2 text-sm font-semibold text-ink hover:bg-gold/20 dark:border-transparent dark:bg-white dark:text-[#090d16]"
+            className="app-button focus-ring mt-5 inline-flex items-center gap-2 rounded-md px-4 py-2 text-sm"
           >
             Continuar
             <ArrowRight className="h-4 w-4" />
           </Link>
         </article>
-        <article className="rounded-md border border-slate-200 bg-white p-5 shadow-sm">
+        <article className="app-card rounded-md p-5">
           <h2 className="text-lg font-bold">Puntos débiles</h2>
           <div className="mt-4 space-y-4">
             {weak.map((item) => {
@@ -99,9 +99,9 @@ function Kpi({
   value: string;
 }) {
   return (
-    <article className="rounded-md border border-slate-200 bg-white p-5 shadow-sm">
+    <article className="app-card rounded-md p-5">
       <Icon className="h-5 w-5 text-harbor" />
-      <p className="mt-4 text-sm text-slate-500">{label}</p>
+      <p className="app-muted mt-4 text-sm">{label}</p>
       <p className="mt-1 text-2xl font-bold">{value}</p>
     </article>
   );

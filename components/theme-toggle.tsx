@@ -25,7 +25,7 @@ export function ThemeToggle() {
 
   return (
     <button
-      className="focus-ring grid h-11 w-11 place-items-center rounded-md border border-slate-300 bg-white text-ink shadow-sm"
+      className="app-control focus-ring grid h-11 w-11 place-items-center rounded-md shadow-sm"
       onClick={toggle}
       aria-label="Cambiar tema"
       title="Cambiar tema"

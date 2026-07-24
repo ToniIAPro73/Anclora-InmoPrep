@@ -28,7 +28,7 @@ export default async function ModuleDetailPage({
       <div>
         <p className="text-sm font-semibold text-gold">{courseModule.code}</p>
         <h1 className="text-3xl font-bold">{courseModule.title}</h1>
-        <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-600">{courseModule.description}</p>
+        <p className="app-muted mt-2 max-w-3xl text-sm leading-6">{courseModule.description}</p>
       </div>
       <ModuleTabs
         lessons={<LessonBlock lesson={courseModule.lessons[0]} />}
@@ -51,14 +51,14 @@ function ExerciseInline({
   exercise: (typeof modules)[number]["exercises"][number];
 }) {
   return (
-    <article className="rounded-md border border-slate-200 bg-white p-5">
+    <article className="app-card rounded-md p-5">
       <p className="text-xs font-semibold uppercase text-gold">{exercise.type}</p>
       <h2 className="mt-2 font-bold">{exercise.question}</h2>
       <details className="mt-4">
         <summary className="cursor-pointer text-sm font-medium text-harbor">
           Ver respuesta esperada
         </summary>
-        <p className="mt-3 text-sm leading-6 text-slate-700">{exercise.explanation}</p>
+        <p className="app-muted mt-3 text-sm leading-6">{exercise.explanation}</p>
       </details>
     </article>
   );

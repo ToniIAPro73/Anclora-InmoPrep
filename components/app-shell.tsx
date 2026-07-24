@@ -33,12 +33,12 @@ export function AppShell({ children }: { children: React.ReactNode }) {
     <div className="min-h-screen lg:flex">
       <aside
         className={cn(
-          "fixed inset-y-0 left-0 z-40 w-72 border-r border-slate-200 bg-white px-4 py-5 shadow-soft transition-transform lg:static lg:translate-x-0",
+          "app-sidebar fixed inset-y-0 left-0 z-40 w-72 border-r px-4 py-5 shadow-soft transition-transform lg:static lg:translate-x-0",
           open ? "translate-x-0" : "-translate-x-full"
         )}
       >
         <div className="mb-8 flex items-center gap-3 px-2">
-          <div className="flex h-10 w-10 items-center justify-center rounded-md bg-ink text-white">
+          <div className="flex h-10 w-10 items-center justify-center rounded-md bg-[#172033] text-[#fffdf8]">
             A
           </div>
           <div>
@@ -59,8 +59,8 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                 className={cn(
                   "focus-ring flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium",
                   active
-                    ? "border border-gold/40 bg-gold/10 text-ink dark:border-transparent dark:bg-[#090d16] dark:text-white"
-                    : "text-slate-700 hover:bg-slate-100 hover:text-ink"
+                    ? "app-nav-active"
+                    : "app-nav-link"
                 )}
               >
                 <Icon className="h-4 w-4" />
@@ -69,27 +69,27 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             );
           })}
         </nav>
-        <div className="mt-8 rounded-md border border-amber-200 bg-amber-50 p-3 text-xs leading-5 text-amber-900">
+        <div className="app-warning mt-8 rounded-md p-3 text-xs leading-5">
           Contenido educativo mock. Verifica normas 2026 con fuentes oficiales antes de uso profesional.
         </div>
       </aside>
       <div className="min-w-0 flex-1">
-        <header className="sticky top-0 z-30 flex h-16 items-center justify-between border-b border-slate-200 bg-paper/90 px-4 backdrop-blur lg:px-8">
+        <header className="app-topbar sticky top-0 z-30 flex h-16 items-center justify-between border-b px-4 backdrop-blur lg:px-8">
           <button
-            className="focus-ring rounded-md border border-slate-300 bg-white p-2 lg:hidden"
+            className="app-control focus-ring rounded-md p-2 lg:hidden"
             onClick={() => setOpen((value) => !value)}
             aria-label="Abrir navegación"
           >
             <Menu className="h-5 w-5" />
           </button>
-          <div className="hidden text-sm text-slate-600 lg:block">
+          <div className="app-muted hidden text-sm lg:block">
             Preparación autónoma ROAIIB 2026
           </div>
           <div className="flex items-center gap-2">
             <ThemeToggle />
             <Link
               href="/estadisticas"
-              className="focus-ring inline-flex min-h-11 items-center gap-2 rounded-md border border-slate-300 bg-white px-3 py-2 text-sm font-medium"
+              className="app-control focus-ring inline-flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium"
             >
               <RotateCcw className="h-4 w-4" />
               Repasos

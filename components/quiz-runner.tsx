@@ -38,7 +38,7 @@ export function QuizRunner({
       {questions.map((question, index) => {
         const selected = answers[question.id];
         return (
-          <article key={question.id} className="rounded-md border border-slate-200 bg-white p-5">
+          <article key={question.id} className="app-card rounded-md p-5">
             <div className="mb-3 flex items-start justify-between gap-4">
               <h3 className="font-semibold">
                 {index + 1}. {question.question}
@@ -57,8 +57,8 @@ export function QuizRunner({
                   key={option}
                   className={`focus-ring rounded-md border px-3 py-2 text-left text-sm ${
                     selected === optionIndex
-                      ? "border-gold/50 bg-gold/10 text-ink dark:border-transparent dark:bg-white dark:text-[#090d16]"
-                      : "border-slate-200 hover:bg-slate-50"
+                      ? "app-button"
+                      : "app-control hover:bg-[color-mix(in_srgb,var(--color-harbor)_10%,var(--color-surface))]"
                   }`}
                   onClick={() =>
                     setAnswers((current) => ({ ...current, [question.id]: optionIndex }))
@@ -70,10 +70,10 @@ export function QuizRunner({
               ))}
             </div>
             {finished ? (
-              <div className="mt-4 rounded-md bg-slate-50 p-3 text-sm leading-6 text-slate-700">
+              <div className="app-soft mt-4 rounded-md p-3 text-sm leading-6">
                 <strong>Explicación:</strong> {question.explanation}
                 {question.legalReference ? (
-                  <span className="block text-xs text-slate-500">{question.legalReference}</span>
+                  <span className="app-muted block text-xs">{question.legalReference}</span>
                 ) : null}
               </div>
             ) : null}
@@ -81,7 +81,7 @@ export function QuizRunner({
         );
       })}
       <button
-        className="focus-ring rounded-md border border-gold/50 bg-gold/10 px-4 py-2 text-sm font-semibold text-ink hover:bg-gold/20 disabled:opacity-50 dark:border-transparent dark:bg-white dark:text-[#090d16]"
+        className="app-button focus-ring rounded-md px-4 py-2 text-sm disabled:opacity-50"
         disabled={Object.keys(answers).length < questions.length || finished}
         onClick={finish}
       >
