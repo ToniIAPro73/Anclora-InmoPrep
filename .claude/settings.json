@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 -c ' *)",
+      "Bash(pdfinfo \"Modulo_14_Negociacion_y_Cierre_de_Ventas_Mallorca_2026_Ampliado.pdf\")",
+      "Bash(pdfinfo \"/mnt/c/Users/antonio.ballesterosa/Downloads/Modulos-curso-agente-inmobiliario/Modulo_15_La_Captacion_Inmobiliaria_Mallorca_2026_Ampliado.pdf\")",
+      "Bash(pdfinfo \"/mnt/c/Users/antonio.ballesterosa/Downloads/Modulos-curso-agente-inmobiliario/Modulo_18_Prevencion_del_Blanqueo_de_Capitales_Mallorca_2026_Ampliado.pdf\")",
+      "Bash(node -e ' *)",
+      "Bash(echo \"EXIT: $?\")",
+      "Bash(grep -c 'moduleId: \"m05\",\\\\s*$' data/module-content/m05.ts)",
+      "Bash(grep -c '\"m11-l[0-9]*\",$\\\\|id: \"m11-l[0-9]*\",' /home/toni/projects/anclora-inmoprep/data/module-content/m11.ts)",
+      "Bash(tee /tmp/tsc_out.txt)",
+      "Skill(agent-browser)",
+      "Skill(agent-browser:*)",
+      "Bash(pkill -f \"npm run dev\")"
+    ]
+  }
+}

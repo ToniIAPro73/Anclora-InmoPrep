@@ -74,6 +74,7 @@ export interface Module {
   lessons: Lesson[];
   exercises: Exercise[];
   quizQuestions: Question[];
+  normativeAlerts?: string[];
 }
 
 export interface UserProgress {

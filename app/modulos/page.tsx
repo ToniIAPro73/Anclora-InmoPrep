@@ -9,8 +9,8 @@ export default function ModulesPage() {
   return (
     <div className="space-y-5">
       <div>
-        <p className="text-sm font-semibold text-gold">19 módulos oficiales</p>
-        <h1 className="text-3xl font-bold">Catálogo de módulos</h1>
+        <p className="app-eyebrow">19 módulos oficiales</p>
+        <h1 className="font-display text-3xl font-bold">Catálogo de módulos</h1>
       </div>
       <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
         {modules.map((module) => (

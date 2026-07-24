@@ -4,40 +4,51 @@
 
 :root {
   color-scheme: light;
-  --color-paper: #f6f1e7;
-  --color-surface: #fffdf8;
-  --color-ink: #172033;
-  --color-harbor: #31506f;
-  --color-gold: #a77523;
-  --color-emerald: #16745f;
-  --color-line: #ddd4c5;
-  --color-muted: #5e6878;
-  --color-danger: #b42318;
+  --color-paper: #f7f2e8;
+  --color-surface: #fffdf9;
+  --color-surface-raised: #ffffff;
+  --color-ink: #161d2e;
+  --color-harbor: #234061;
+  --color-gold: #ab7a28;
+  --color-emerald: #14705c;
+  --color-line: #e4d9c3;
+  --color-muted: #5c667a;
+  --color-danger: #b0281b;
 }
 
 .dark {
   color-scheme: dark;
-  --color-paper: #0c111d;
-  --color-surface: #141c2b;
-  --color-ink: #f3eadb;
-  --color-harbor: #9db5d0;
-  --color-gold: #d7a84d;
-  --color-emerald: #61d0af;
-  --color-line: #2d3a4d;
-  --color-muted: #c3ccda;
-  --color-danger: #ffb4a8;
+  --color-paper: #090d16;
+  --color-surface: #121a29;
+  --color-surface-raised: #182233;
+  --color-ink: #f4ecdd;
+  --color-harbor: #a7c0dd;
+  --color-gold: #e0b568;
+  --color-emerald: #6fdcb8;
+  --color-line: #283349;
+  --color-muted: #aab6c9;
+  --color-danger: #ff9d8d;
 }
 
 * {
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
+  min-height: 100vh;
   background:
-    radial-gradient(circle at 18% 0%, color-mix(in srgb, var(--color-gold) 16%, transparent), transparent 28rem),
+    radial-gradient(60rem 32rem at 12% -8%, color-mix(in srgb, var(--color-gold) 14%, transparent), transparent 60%),
+    radial-gradient(50rem 30rem at 100% 0%, color-mix(in srgb, var(--color-harbor) 12%, transparent), transparent 55%),
     var(--color-paper);
+  background-attachment: fixed;
   color: var(--color-ink);
+  font-feature-settings: "ss01" 1;
+  -webkit-font-smoothing: antialiased;
 }
 
 a {
@@ -46,9 +57,14 @@ a {
 }
 
 h1,
-h2 {
+h2,
+h3 {
   font-family: var(--font-display), serif;
-  letter-spacing: 0;
+  letter-spacing: -0.01em;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--color-gold) 35%, transparent);
 }
 
 .focus-ring {
@@ -60,18 +76,30 @@ h2 {
     border: 1px solid var(--color-line);
     background: var(--color-surface);
     color: var(--color-ink);
-    box-shadow: 0 10px 28px color-mix(in srgb, #000 7%, transparent);
+    box-shadow: theme("boxShadow.card");
+    transition: box-shadow 0.35s theme("transitionTimingFunction.premium"), transform 0.35s theme("transitionTimingFunction.premium"), border-color 0.35s ease;
+  }
+
+  .app-card-interactive {
+    @apply app-card;
+  }
+
+  .app-card-interactive:hover {
+    box-shadow: theme("boxShadow.cardHover");
+    transform: translateY(-3px);
+    border-color: color-mix(in srgb, var(--color-gold) 40%, var(--color-line));
   }
 
   .app-topbar {
     border-color: var(--color-line);
-    background: color-mix(in srgb, var(--color-paper) 92%, transparent);
+    background: color-mix(in srgb, var(--color-paper) 78%, transparent);
     color: var(--color-ink);
+    backdrop-filter: blur(14px) saturate(140%);
   }
 
   .app-sidebar {
     border-color: var(--color-line);
-    background: var(--color-surface);
+    background: linear-gradient(180deg, var(--color-surface), color-mix(in srgb, var(--color-surface) 92%, var(--color-harbor) 8%));
     color: var(--color-ink);
   }
 
@@ -80,28 +108,75 @@ h2 {
     border: 1px solid var(--color-line);
     background: var(--color-surface);
     color: var(--color-ink);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+  }
+
+  .app-control:hover {
+    border-color: color-mix(in srgb, var(--color-harbor) 45%, var(--color-line));
   }
 
   .app-button {
+    position: relative;
     min-height: 44px;
-    border: 1px solid color-mix(in srgb, var(--color-gold) 52%, var(--color-line));
-    background: color-mix(in srgb, var(--color-gold) 14%, var(--color-surface));
+    border: 1px solid color-mix(in srgb, var(--color-gold) 55%, transparent);
+    background: theme("backgroundImage.gold-gradient");
+    color: #201304;
+    font-weight: 700;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.35) inset, 0 10px 24px -10px color-mix(in srgb, var(--color-gold) 65%, transparent);
+    transition: transform 0.25s theme("transitionTimingFunction.premium"), box-shadow 0.25s ease, filter 0.25s ease;
+  }
+
+  .dark .app-button {
+    color: #1a1102;
+  }
+
+  .app-button:hover {
+    filter: brightness(1.06);
+    transform: translateY(-1px);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.35) inset, 0 16px 32px -12px color-mix(in srgb, var(--color-gold) 70%, transparent);
+  }
+
+  .app-button:active {
+    transform: translateY(0);
+  }
+
+  .app-button-ghost {
+    min-height: 44px;
+    border: 1px solid var(--color-line);
+    background: var(--color-surface);
+    color: var(--color-ink);
+    font-weight: 600;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+  }
+
+  .app-button-ghost:hover {
+    background: color-mix(in srgb, var(--color-harbor) 8%, var(--color-surface));
+    border-color: color-mix(in srgb, var(--color-harbor) 35%, var(--color-line));
+  }
+
+  .app-nav-active {
+    position: relative;
+    border: 1px solid color-mix(in srgb, var(--color-gold) 40%, transparent);
+    background: color-mix(in srgb, var(--color-gold) 16%, var(--color-surface));
     color: var(--color-ink);
     font-weight: 700;
   }
 
-  .app-button:hover {
-    background: color-mix(in srgb, var(--color-gold) 24%, var(--color-surface));
-  }
-
-  .app-nav-active {
-    border: 1px solid color-mix(in srgb, var(--color-gold) 45%, var(--color-line));
-    background: color-mix(in srgb, var(--color-gold) 14%, var(--color-surface));
-    color: var(--color-ink);
+  .app-nav-active::before {
+    content: "";
+    position: absolute;
+    left: -1rem;
+    top: 50%;
+    height: 1.25rem;
+    width: 3px;
+    transform: translateY(-50%);
+    border-radius: 999px;
+    background: theme("backgroundImage.gold-gradient");
   }
 
   .app-nav-link {
     color: var(--color-muted);
+    transition: background-color 0.2s ease, color 0.2s ease;
   }
 
   .app-nav-link:hover {
@@ -114,7 +189,7 @@ h2 {
   }
 
   .app-soft {
-    background: color-mix(in srgb, var(--color-harbor) 10%, var(--color-surface));
+    background: color-mix(in srgb, var(--color-harbor) 9%, var(--color-surface));
     color: var(--color-ink);
   }
 
@@ -122,11 +197,12 @@ h2 {
     border-color: color-mix(in srgb, var(--color-gold) 45%, var(--color-line));
     background: color-mix(in srgb, var(--color-gold) 16%, var(--color-surface));
     color: var(--color-ink);
+    box-shadow: 0 6px 16px -8px color-mix(in srgb, var(--color-gold) 55%, transparent);
   }
 
   .app-warning {
     border: 1px solid color-mix(in srgb, var(--color-gold) 48%, var(--color-line));
-    background: color-mix(in srgb, var(--color-gold) 16%, var(--color-surface));
+    background: color-mix(in srgb, var(--color-gold) 14%, var(--color-surface));
     color: var(--color-ink);
   }
 
@@ -136,11 +212,51 @@ h2 {
     color: var(--color-danger);
   }
 
+  .brand-mark {
+    background: linear-gradient(135deg, #1c2c48, #0a111f);
+    color: #f7ecd9;
+  }
+
+  .app-eyebrow {
+    @apply text-xs font-bold uppercase tracking-[0.14em] text-gold;
+  }
+
+  .app-hero {
+    background:
+      radial-gradient(38rem 20rem at 100% 0%, color-mix(in srgb, var(--color-gold) 16%, transparent), transparent 65%),
+      linear-gradient(160deg, var(--color-surface), color-mix(in srgb, var(--color-surface) 88%, var(--color-harbor) 12%));
+  }
+
   input,
   select,
   textarea {
     background-color: var(--color-surface);
     color: var(--color-ink);
     border-color: var(--color-line);
+  }
+}
+
+@keyframes premium-rise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-rise {
+  animation: premium-rise 0.45s theme("transitionTimingFunction.premium") both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-rise,
+  .app-card,
+  .app-button,
+  .app-control {
+    animation: none !important;
+    transition: none !important;
   }
 }

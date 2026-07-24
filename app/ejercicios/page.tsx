@@ -33,13 +33,13 @@ export default function ExercisesPage() {
   return (
     <div className="space-y-5">
       <div>
-        <p className="text-sm font-semibold text-gold">Práctica aplicada</p>
-        <h1 className="text-3xl font-bold">Ejercicios prácticos</h1>
+        <p className="app-eyebrow">Práctica aplicada</p>
+        <h1 className="font-display text-3xl font-bold">Ejercicios prácticos</h1>
       </div>
-      <section className="app-card flex flex-wrap gap-3 rounded-md p-4">
+      <section className="app-card flex flex-wrap gap-3 rounded-xl p-4">
         <SlidersHorizontal className="h-5 w-5 text-harbor" />
         <select
-          className="app-control focus-ring rounded-md px-3 py-2 text-sm"
+          className="app-control focus-ring rounded-xl px-3 py-2 text-sm"
           value={moduleId}
           onChange={(event) => setModuleId(event.target.value)}
         >
@@ -51,7 +51,7 @@ export default function ExercisesPage() {
           ))}
         </select>
         <select
-          className="app-control focus-ring rounded-md px-3 py-2 text-sm"
+          className="app-control focus-ring rounded-xl px-3 py-2 text-sm"
           value={type}
           onChange={(event) => setType(event.target.value as ExerciseType | "all")}
         >
@@ -67,9 +67,9 @@ export default function ExercisesPage() {
           const courseModule = modules.find((item) => item.id === exercise.moduleId);
           const done = completed.includes(exercise.id);
           return (
-            <article key={exercise.id} className="app-card rounded-md p-5">
+            <article key={exercise.id} className="app-card-interactive animate-rise rounded-xl p-5">
               <div className="mb-3 flex items-center justify-between gap-3">
-                <span className="text-xs font-semibold text-gold">{courseModule?.code}</span>
+                <span className="app-eyebrow">{courseModule?.code}</span>
                 {done ? <CheckCircle2 className="h-5 w-5 text-emerald" /> : null}
               </div>
               <h2 className="font-bold">{exercise.question}</h2>
@@ -80,7 +80,7 @@ export default function ExercisesPage() {
                 <p className="app-muted mt-3 text-sm leading-6">{exercise.explanation}</p>
               </details>
               <button
-                className="app-button focus-ring mt-4 rounded-md px-3 py-2 text-sm disabled:opacity-70"
+                className="app-button focus-ring mt-4 rounded-xl px-3 py-2 text-sm disabled:opacity-70"
                 disabled={done}
                 onClick={() => completeExercise(exercise.id)}
               >

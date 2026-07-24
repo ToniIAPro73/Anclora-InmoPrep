@@ -13,7 +13,7 @@ export function ModuleTabs({
 }) {
   return (
     <Tabs.Root defaultValue="lessons" className="space-y-4">
-      <Tabs.List className="app-card flex flex-wrap gap-2 rounded-md p-2">
+      <Tabs.List className="app-card flex flex-wrap gap-2 rounded-xl p-2">
         {[
           ["lessons", "Contenido y lecciones"],
           ["exercises", "Ejercicios prácticos"],
@@ -22,7 +22,7 @@ export function ModuleTabs({
           <Tabs.Trigger
             key={value}
             value={value}
-            className="app-tab focus-ring rounded-md border border-transparent px-3 py-2 text-sm font-medium"
+            className="app-tab focus-ring rounded-lg border border-transparent px-3 py-2 text-sm font-semibold transition-colors"
           >
             {label}
           </Tabs.Trigger>

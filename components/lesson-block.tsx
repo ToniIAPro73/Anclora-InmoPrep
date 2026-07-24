@@ -15,35 +15,57 @@ export function LessonBlock({ lesson }: { lesson: Lesson }) {
   const completed = progress?.completedLessonIds.includes(lesson.id) ?? false;
 
   return (
-    <section className="app-card space-y-5 rounded-md p-5">
+    <section className="app-card animate-rise space-y-6 rounded-xl p-5 lg:p-7">
       <div>
-        <p className="text-xs font-semibold uppercase text-gold">Lección {lesson.order}</p>
-        <h2 className="mt-1 text-2xl font-bold">{lesson.title}</h2>
+        <p className="app-eyebrow">Lección {lesson.order}</p>
+        <h2 className="mt-1 font-display text-2xl font-bold lg:text-3xl">{lesson.title}</h2>
         <p className="app-muted mt-2 text-sm leading-6">{lesson.summary}</p>
       </div>
-      <div className="space-y-3 text-sm leading-7">
+
+      {lesson.keyConcepts.length ? (
+        <div className="flex flex-wrap gap-2">
+          {lesson.keyConcepts.map((concept) => (
+            <span
+              key={concept}
+              className="rounded-full border border-line bg-surface px-3 py-1 text-xs font-medium text-muted"
+            >
+              {concept}
+            </span>
+          ))}
+        </div>
+      ) : null}
+
+      <div className="space-y-4 text-sm leading-7">
         {lesson.content.split("\n").map((line, index) => {
           if (line.startsWith("## ")) {
             return (
-              <h3 key={`${line}-${index}`} className="pt-2 text-base font-bold">
+              <h3
+                key={`${line}-${index}`}
+                className="font-display pt-2 text-lg font-bold text-harbor"
+              >
                 {line.replace("## ", "")}
               </h3>
             );
           }
           if (!line.trim()) return null;
-          return <p key={`${line}-${index}`}>{line}</p>;
+          return (
+            <p key={`${line}-${index}`} className="app-muted">
+              {line}
+            </p>
+          );
         })}
       </div>
+
       <div className="flex flex-wrap gap-2">
         <button
-          className="app-control focus-ring inline-flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium"
+          className="app-button-ghost focus-ring inline-flex items-center gap-2 rounded-lg px-3 py-2 text-sm"
           onClick={() => setEasy((value) => !value)}
         >
           <Lightbulb className="h-4 w-4" />
           Explícamelo fácil
         </button>
         <button
-          className="app-control focus-ring inline-flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium"
+          className="app-button-ghost focus-ring inline-flex items-center gap-2 rounded-lg px-3 py-2 text-sm"
           onClick={() => setCaseOpen((value) => !value)}
         >
           <MapPinned className="h-4 w-4" />
@@ -51,16 +73,16 @@ export function LessonBlock({ lesson }: { lesson: Lesson }) {
         </button>
       </div>
       {easy ? (
-        <div className="rounded-md border border-emerald/30 bg-emerald/10 p-4 text-sm leading-6">
+        <div className="animate-rise rounded-xl border border-emerald/30 bg-emerald/10 p-4 text-sm leading-6">
           {lesson.easyExplanation}
         </div>
       ) : null}
       {caseOpen ? (
-        <div className="app-warning rounded-md p-4 text-sm leading-6">
+        <div className="app-warning animate-rise rounded-xl p-4 text-sm leading-6">
           {lesson.balearExample}
         </div>
       ) : null}
-      <div className="app-danger rounded-md p-4">
+      <div className="app-danger rounded-xl p-4">
         <h3 className="flex items-center gap-2 text-sm font-bold">
           <TriangleAlert className="h-4 w-4" />
           Errores frecuentes
@@ -72,7 +94,7 @@ export function LessonBlock({ lesson }: { lesson: Lesson }) {
         </ul>
       </div>
       <button
-        className="app-button focus-ring inline-flex items-center gap-2 rounded-md px-4 py-2 text-sm disabled:opacity-70"
+        className="app-button focus-ring inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm disabled:opacity-70"
         disabled={completed}
         onClick={() => markLesson(lesson.moduleId, lesson.id)}
       >
